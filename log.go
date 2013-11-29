@@ -26,13 +26,12 @@ var Logger *logs.Logger
 
 func init() {
 	Logger = logs.NewLogger(10000)
-	swtich LogType{
+	switch LogType{
 		case "file":
-		//`{"filename":"test.log"}`
-		filePara := `{"filename":"`+LogFileName+`"}`
-		Logger.SetLogger(LogType, filePara)
+     		filePara := `{"filename":"`+LogFileName+`"}`
+	    	Logger.SetLogger(LogType, filePara)
 		default:
-		Logger.SetLogger("console","")
+		 Logger.SetLogger("console","")
 	}
 
 }
