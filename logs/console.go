@@ -23,12 +23,14 @@ func (c *ConsoleWriter) Init(jsonconfig string) error {
 	fmt.Println("Init",jsonconfig)
 	var m map[string]interface{}
 	err := json.Unmarshal([]byte(jsonconfig), &m)
+	fmt.Println(err)
 	if err != nil {
 		return err
 	}
 	if lv, ok := m["level"]; ok {
 		c.level = int(lv.(float64))
 	}
+	fmt.Println(c.level)
 	return nil
 }
 
