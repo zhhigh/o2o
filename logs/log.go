@@ -56,6 +56,8 @@ type logMsg struct {
 // config need to be correct JSON as string: {"interval":360}
 func NewLogger(channellen int64) *Logger {
 	bl := new(Logger)
+	fmt.Println("----newlogger----")
+	fmt.Println(bl)
 	bl.msg = make(chan *logMsg, channellen)
 	bl.outputs = make(map[string]LoggerInterface)
 	//bl.SetLogger("console", "") // default output to console
