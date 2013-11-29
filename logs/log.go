@@ -117,6 +117,9 @@ func (bl *Logger) StartLogger() {
 func (bl *Logger) Trace(format string, v ...interface{}) {
 	msg := fmt.Sprintf("[T] "+format, v...)
 	bl.writerMsg(LevelTrace, msg)
+	fmt.Println("-------------------")
+	fmt.Println(msg)
+
 }
 
 func (bl *Logger) Debug(format string, v ...interface{}) {
