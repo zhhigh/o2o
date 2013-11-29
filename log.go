@@ -31,8 +31,9 @@ func init() {
 	fmt.Println(LogFileName)
 	switch LogType{
 		case "file":
-     		filePara := `{"filename":"`+LogFileName+`"}`
+     		filePara := `{"filename":"`+LogFileName+`","maxlines":10000}`
 			fmt.Println(filePara)
+			//log.SetLogger("file", `{"filename":"test3.log","maxlines":4}`)
 	    	Logger.SetLogger(LogType, filePara)
 		default:
 		 Logger.SetLogger("console","")
