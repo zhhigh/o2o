@@ -17,6 +17,7 @@ func NewConsole() LoggerInterface {
 	cw.lg = log.New(os.Stdout, "", log.Ldate|log.Ltime)
 	fmt.Println(cw.lg)
 	cw.level = LevelTrace
+	fmt.Println("leveltrace")
 	fmt.Println(cw.level)
 	return cw
 }
