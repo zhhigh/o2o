@@ -89,6 +89,9 @@ func (bl *Logger) DelLogger(adaptername string) error {
 }
 
 func (bl *Logger) writerMsg(loglevel int, msg string) error {
+	fmt.Println("----level----")
+	fmt.Println(bl.level)
+	fmt.Println(logLevel)
 	if bl.level > loglevel {
 		return nil
 	}
