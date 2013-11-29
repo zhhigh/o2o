@@ -36,6 +36,9 @@ func Register(name string, log loggerType) {
 		panic("logs: Register called twice for provider " + name)
 	}
 	adapters[name] = log
+	fmt.Println("register--------------")
+	fmt.Println(log)
+	fmt.PRintln(adapters)
 }
 
 type Logger struct {
