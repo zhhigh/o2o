@@ -69,6 +69,7 @@ func (bl *Logger) SetLogger(adaptername string, config string) error {
 		fmt.Println(config)
 		lg.Init(config)
 		bl.outputs[adaptername] = lg
+		fmt.Println(bl)
 		return nil
 	} else {
 		return fmt.Errorf("logs: unknown adaptername %q (forgotten Register?)", adaptername)
