@@ -6,6 +6,3 @@ package o2o
 */
 
 const VERSION = "0.0.1"
-import(
-
-)
