@@ -51,8 +51,8 @@ type logMsg struct {
 }
 
 // config need to be correct JSON as string: {"interval":360}
-func NewLogger(channellen int64) *BeeLogger {
-	bl := new(BeeLogger)
+func NewLogger(channellen int64) *Logger {
+	bl := new(Logger)
 	bl.msg = make(chan *logMsg, channellen)
 	bl.outputs = make(map[string]LoggerInterface)
 	//bl.SetLogger("console", "") // default output to console
@@ -60,7 +60,7 @@ func NewLogger(channellen int64) *BeeLogger {
 	return bl
 }
 
-func (bl *BeeLogger) SetLogger(adaptername string, config string) error {
+func (bl *Logger) SetLogger(adaptername string, config string) error {
 	bl.lock.Lock()
 	defer bl.lock.Unlock()
 	if log, ok := adapters[adaptername]; ok {
@@ -73,7 +73,7 @@ func (bl *BeeLogger) SetLogger(adaptername string, config string) error {
 	}
 }
 
-func (bl *BeeLogger) DelLogger(adaptername string) error {
+func (bl *Logger) DelLogger(adaptername string) error {
 	bl.lock.Lock()
 	defer bl.lock.Unlock()
 	if lg, ok := bl.outputs[adaptername]; ok {
@@ -85,7 +85,7 @@ func (bl *BeeLogger) DelLogger(adaptername string) error {
 	}
 }
 
-func (bl *BeeLogger) writerMsg(loglevel int, msg string) error {
+func (bl *Logger) writerMsg(loglevel int, msg string) error {
 	if bl.level > loglevel {
 		return nil
 	}
@@ -96,11 +96,11 @@ func (bl *BeeLogger) writerMsg(loglevel int, msg string) error {
 	return nil
 }
 
-func (bl *BeeLogger) SetLevel(l int) {
+func (bl *Logger) SetLevel(l int) {
 	bl.level = l
 }
 
-func (bl *BeeLogger) StartLogger() {
+func (bl *Logger) StartLogger() {
 	for {
 		select {
 		case bm := <-bl.msg:
@@ -111,44 +111,44 @@ func (bl *BeeLogger) StartLogger() {
 	}
 }
 
-func (bl *BeeLogger) Trace(format string, v ...interface{}) {
+func (bl *Logger) Trace(format string, v ...interface{}) {
 	msg := fmt.Sprintf("[T] "+format, v...)
 	bl.writerMsg(LevelTrace, msg)
 }
 
-func (bl *BeeLogger) Debug(format string, v ...interface{}) {
+func (bl *Logger) Debug(format string, v ...interface{}) {
 	msg := fmt.Sprintf("[D] "+format, v...)
 	bl.writerMsg(LevelDebug, msg)
 }
 
-func (bl *BeeLogger) Info(format string, v ...interface{}) {
+func (bl *Logger) Info(format string, v ...interface{}) {
 	msg := fmt.Sprintf("[I] "+format, v...)
 	bl.writerMsg(LevelInfo, msg)
 }
 
-func (bl *BeeLogger) Warn(format string, v ...interface{}) {
+func (bl *Logger) Warn(format string, v ...interface{}) {
 	msg := fmt.Sprintf("[W] "+format, v...)
 	bl.writerMsg(LevelWarn, msg)
 }
 
-func (bl *BeeLogger) Error(format string, v ...interface{}) {
+func (bl *Logger) Error(format string, v ...interface{}) {
 	msg := fmt.Sprintf("[E] "+format, v...)
 	bl.writerMsg(LevelError, msg)
 }
 
-func (bl *BeeLogger) Critical(format string, v ...interface{}) {
+func (bl *Logger) Critical(format string, v ...interface{}) {
 	msg := fmt.Sprintf("[C] "+format, v...)
 	bl.writerMsg(LevelCritical, msg)
 }
 
 //flush all chan data
-func (bl *BeeLogger) Flush() {
+func (bl *Logger) Flush() {
 	for _, l := range bl.outputs {
 		l.Flush()
 	}
 }
 
-func (bl *BeeLogger) Close() {
+func (bl *Logger) Close() {
 	for {
 		if len(bl.msg) > 0 {
 			bm := <-bl.msg
