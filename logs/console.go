@@ -15,10 +15,7 @@ type ConsoleWriter struct {
 func NewConsole() LoggerInterface {
 	cw := new(ConsoleWriter)
 	cw.lg = log.New(os.Stdout, "", log.Ldate|log.Ltime)
-	fmt.Println(cw.lg)
 	cw.level = LevelTrace
-	fmt.Println("leveltrace")
-	fmt.Println(cw.level)
 	return cw
 }
 
@@ -35,9 +32,6 @@ func (c *ConsoleWriter) Init(jsonconfig string) error {
 }
 
 func (c *ConsoleWriter) WriteMsg(msg string, level int) error {
-	fmt.Println("--------------")
-	fmt.Println(level)
-	fmt.Println(c.level)
 	if level < c.level {
 		return nil
 	}
