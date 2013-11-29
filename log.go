@@ -27,6 +27,7 @@ var Logger *logs.Logger
 
 func init() {
 	Logger = logs.NewLogger(10000)
+	fmt.Println(Logger)
 	fmt.Println(LogType)
 	fmt.Println(LogFileName)
 	switch LogType{
