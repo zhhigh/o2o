@@ -65,11 +65,8 @@ func (bl *Logger) SetLogger(adaptername string, config string) error {
 	defer bl.lock.Unlock()
 	if log, ok := adapters[adaptername]; ok {
 		lg := log()
-		fmt.Println(lg)
-		fmt.Println(config)
 		lg.Init(config)
 		bl.outputs[adaptername] = lg
-		fmt.Println(bl)
 		return nil
 	} else {
 		return fmt.Errorf("logs: unknown adaptername %q (forgotten Register?)", adaptername)
@@ -89,18 +86,13 @@ func (bl *Logger) DelLogger(adaptername string) error {
 }
 
 func (bl *Logger) writerMsg(loglevel int, msg string) error {
-	fmt.Println("----level----")
-	fmt.Println(bl.level)
-	fmt.Println(loglevel)
 	if bl.level > loglevel {
 		return nil
 	}
 	lm := new(logMsg)
 	lm.level = loglevel
 	lm.msg = msg
-	fmt.Println(lm.msg)
 	bl.msg <- lm
-	fmt.Println(lm)
 	return nil
 }
 
@@ -113,8 +105,6 @@ func (bl *Logger) StartLogger() {
 		select {
 
 		case bm := <-bl.msg:
-			fmt.Println(bm)
-			fmt.Println(bl.msg)
 			for _, l := range bl.outputs {
 				l.WriteMsg(bm.msg, bm.level)
 			}
@@ -125,8 +115,6 @@ func (bl *Logger) StartLogger() {
 func (bl *Logger) Trace(format string, v ...interface{}) {
 	msg := fmt.Sprintf("[T] "+format, v...)
 	bl.writerMsg(LevelTrace, msg)
-	fmt.Println("-------------------")
-	fmt.Println(msg)
 
 }
 
