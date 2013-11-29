@@ -98,6 +98,7 @@ func (bl *Logger) writerMsg(loglevel int, msg string) error {
 	lm := new(logMsg)
 	lm.level = loglevel
 	lm.msg = msg
+	fmt.Println(lm.msg)
 	bl.msg <- lm
 	fmt.Println(lm)
 	return nil
