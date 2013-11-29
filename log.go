@@ -36,6 +36,7 @@ func init() {
 			fmt.Println(filePara)
 			//log.SetLogger("file", `{"filename":"test3.log","maxlines":4}`)
 	    	Logger.SetLogger(LogType, filePara)
+		    Logger.Info("test")
 		default:
 		 Logger.SetLogger("console","")
 	}
