@@ -38,7 +38,7 @@ func Register(name string, log loggerType) {
 	adapters[name] = log
 	fmt.Println("register--------------")
 	fmt.Println(log)
-	fmt.PRintln(adapters)
+	fmt.Println(adapters)
 }
 
 type Logger struct {
