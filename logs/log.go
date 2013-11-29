@@ -36,9 +36,6 @@ func Register(name string, log loggerType) {
 		panic("logs: Register called twice for provider " + name)
 	}
 	adapters[name] = log
-	fmt.Println("register--------------")
-	fmt.Println(log)
-	fmt.Println(adapters)
 }
 
 type Logger struct {
@@ -70,7 +67,6 @@ func (bl *Logger) SetLogger(adaptername string, config string) error {
 		lg := log()
 		lg.Init(config)
 		bl.outputs[adaptername] = lg
-		fmt.Println(adapters)
 		return nil
 	} else {
 		return fmt.Errorf("logs: unknown adaptername %q (forgotten Register?)", adaptername)
