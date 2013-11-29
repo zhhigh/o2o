@@ -33,6 +33,8 @@ func (c *ConsoleWriter) Init(jsonconfig string) error {
 }
 
 func (c *ConsoleWriter) WriteMsg(msg string, level int) error {
+	fmt.Println(level)
+	fmt.Println(c.level)
 	if level < c.level {
 		return nil
 	}
