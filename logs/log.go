@@ -66,6 +66,7 @@ func (bl *Logger) SetLogger(adaptername string, config string) error {
 	if log, ok := adapters[adaptername]; ok {
 		lg := log()
 		fmt.Println(lg)
+		fmt.Println(config)
 		lg.Init(config)
 		bl.outputs[adaptername] = lg
 		return nil
