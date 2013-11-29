@@ -12,6 +12,8 @@ var (
 	AppPath       string
 	AppConfigPath string
 	HttpPort      string
+	LogFilePath   string
+	AppConfig     config.ConfigContainer
 
 )
 
