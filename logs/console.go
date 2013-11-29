@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"log"
 	"os"
-	"fmt"
 )
 
 type ConsoleWriter struct {
