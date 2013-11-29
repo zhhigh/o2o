@@ -32,7 +32,7 @@ func ParseConfig() (err error) {
 	if err != nil {
 		return err
 	} else {
-		if v, err := AppConfig.Int("httpport"); err == nil {
+		if v, err := AppConfig.String("httpport"); err == nil {
 			HttpPort = v
 		}
 
