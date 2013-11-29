@@ -4,6 +4,8 @@ package o2o
   ver :0.01
   author:zhhigh
 */
+
+const VERSION = "0.0.1"
 import(
 
 )
