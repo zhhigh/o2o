@@ -57,6 +57,7 @@ func NewLogger(channellen int64) *Logger {
 	bl.outputs = make(map[string]LoggerInterface)
 	//bl.SetLogger("console", "") // default output to console
 	go bl.StartLogger()
+	fmt.Println("bl.outputs",bl.outputs)
 	return bl
 }
 
