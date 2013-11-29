@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"os"
+	"fmt"
 )
 
 type ConsoleWriter struct {
@@ -19,6 +20,7 @@ func NewConsole() LoggerInterface {
 }
 
 func (c *ConsoleWriter) Init(jsonconfig string) error {
+	fmt.Println("Init",jsonconfig)
 	var m map[string]interface{}
 	err := json.Unmarshal([]byte(jsonconfig), &m)
 	if err != nil {
