@@ -27,6 +27,7 @@ var Logger *logs.Logger
 
 func init() {
 	Logger = logs.NewLogger(10000)
+	SetLevel(LevelInfo)
 	fmt.Println(Logger)
 	fmt.Println(LogType)
 	fmt.Println(LogFileName)
@@ -38,7 +39,7 @@ func init() {
 	    	Logger.SetLogger(LogType, filePara)
 		    Logger.Info("test")
 		default:
-		 Logger.SetLogger("console","")
+		    Logger.SetLogger("console","")
 	}
 
 }
