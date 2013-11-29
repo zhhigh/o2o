@@ -12,7 +12,8 @@ var (
 	AppPath       string
 	AppConfigPath string
 	HttpPort      string
-	LogFilePath   string
+	LogFileName   string
+	LogType       string
 	AppConfig     config.ConfigContainer
 
 )
@@ -20,8 +21,6 @@ var (
 func init() {
 	os.Chdir(path.Dir(os.Args[0]))
 	AppPath = path.Dir(os.Args[0])
-	//HttpPort = ":80"
-	//AppName = "beego"
 	AppConfigPath = path.Join(AppPath, "conf", "app.conf")
 	ParseConfig()
 	runtime.GOMAXPROCS(runtime.NumCPU())
@@ -34,6 +33,12 @@ func ParseConfig() (err error) {
 	} else {
 		if v := AppConfig.String("httpport"); err == nil {
 			HttpPort = v
+		}
+		if v := AppConfig.String("logfile"); err == nil {
+			LogFileName = v
+		}
+		if v := AppConfig.String("logtype"); err == nil {
+			LogType = v
 		}
 
 	}
