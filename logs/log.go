@@ -38,7 +38,7 @@ func Register(name string, log loggerType) {
 	adapters[name] = log
 }
 
-type BeeLogger struct {
+type Logger struct {
 	lock    sync.Mutex
 	level   int
 	msg     chan *logMsg
