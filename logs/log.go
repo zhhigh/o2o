@@ -56,8 +56,8 @@ func NewLogger(channellen int64) *Logger {
 	bl.msg = make(chan *logMsg, channellen)
 	bl.outputs = make(map[string]LoggerInterface)
 	//bl.SetLogger("console", "") // default output to console
-	go bl.StartLogger()()
-	fmt.Println("NewLogger,go bl.startlogger")
+	go 	bl.StartLogger()
+    fmt.Println("NewLogger,go bl.startlogger")
 	return bl
 }
 
@@ -93,17 +93,17 @@ func (bl *Logger) writerMsg(loglevel int, msg string) error {
 	lm := new(logMsg)
 	lm.level = loglevel
 	lm.msg = msg
-	fmt.Println("-----writemsg----------")
-	fmt.Println(lm.msg)
-	fmt.Println("-----writemsg----------")
+	//fmt.Println("-----writemsg----------")
+	//fmt.Println(lm.msg)
+	//fmt.Println("-----writemsg----------")
 	bl.msg <- lm
 
-	fmt.Println(lm.msg)
-	fmt.Println(lm.level)
-	fmt.Println("bl.level",bl.level)
-	fmt.Println("loglevel",loglevel)
-	fmt.Println("-----bl.msg----------")
-	fmt.Println("bl",bl)
+	//fmt.Println(lm.msg)
+	//fmt.Println(lm.level)
+	//fmt.Println("bl.level",bl.level)
+	//fmt.Println("loglevel",loglevel)
+	//fmt.Println("-----bl.msg----------")
+	//fmt.Println("bl",bl)
 	return nil
 }
 
@@ -112,16 +112,14 @@ func (bl *Logger) SetLevel(l int) {
 }
 
 func (bl *Logger) StartLogger() {
-	fmt.Println("---------startlogger---------")
-
-	fmt.Println("bl.msg",bl.msg)
-	fmt.Println("---------startlogger---------")
 	for {
 		select {
 		case bm := <-bl.msg:
 			for _, l := range bl.outputs {
  				l.WriteMsg(bm.msg, bm.level)
 			}
+		//default:
+		//	fmt.Println("please exit")
 		}
 	}
 }
@@ -139,6 +137,7 @@ func (bl *Logger) Debug(format string, v ...interface{}) {
 
 func (bl *Logger) Info(format string, v ...interface{}) {
 	msg := fmt.Sprintf("[I] "+format, v...)
+	//fmt.Println("Info",msg)
 	bl.writerMsg(LevelInfo, msg)
 }
 
