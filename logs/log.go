@@ -103,6 +103,7 @@ func (bl *Logger) writerMsg(loglevel int, msg string) error {
 	fmt.Println("bl.level",bl.level)
 	fmt.Println("loglevel",loglevel)
 	fmt.Println("-----bl.msg----------")
+	fmt.Println("bl",bl)
 	return nil
 }
 
