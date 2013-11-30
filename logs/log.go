@@ -65,13 +65,10 @@ func (bl *Logger) SetLogger(adaptername string, config string) error {
 	bl.lock.Lock()
 	defer bl.lock.Unlock()
 	if log, ok := adapters[adaptername]; ok {
-		fmt.Println("adapters[adaptername]",log)
 		lg := log()
 		lg.Init(config)
-		fmt.Println("lg",lg)
 		bl.outputs[adaptername] = lg
-		fmt.Println("adaptername",adaptername)
-		return nil
+  		return nil
 	} else {
 		return fmt.Errorf("logs: unknown adaptername %q (forgotten Register?)", adaptername)
 	}
@@ -112,8 +109,6 @@ func (bl *Logger) StartLogger() {
 			for _, l := range bl.outputs {
 				l.WriteMsg(bm.msg, bm.level)
 			}
-		default:
-			fmt.Println("start default")
 		}
 	}
 }
