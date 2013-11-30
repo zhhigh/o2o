@@ -26,7 +26,7 @@ func SetLevel(l int) {
 var Logger *logs.Logger
 
 func init() {
-	Logger = logs.NewLogger(10000)
+	Logger = logs.NewLogger(100)
 	SetLevel(LevelInfo)
 	fmt.Println(Logger)
 	fmt.Println(LogType)
