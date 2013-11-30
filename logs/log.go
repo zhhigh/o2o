@@ -112,12 +112,15 @@ func (bl *Logger) SetLevel(l int) {
 }
 
 func (bl *Logger) StartLogger() {
+	fmt.Println("---------startlogger---------")
+
+	fmt.Println("bl.msg",bl.msg)
+	fmt.Println("---------startlogger---------")
 	for {
 		select {
 		case bm := <-bl.msg:
-		fmt.Println("<----bm---")
 			for _, l := range bl.outputs {
-				l.WriteMsg(bm.msg, bm.level)
+ 				l.WriteMsg(bm.msg, bm.level)
 			}
 		}
 	}
