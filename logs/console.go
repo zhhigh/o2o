@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"os"
-	"fmt"
+	//"fmt"
 )
 
 type ConsoleWriter struct {
@@ -20,25 +20,31 @@ func NewConsole() LoggerInterface {
 }
 
 func (c *ConsoleWriter) Init(jsonconfig string) error {
-	fmt.Println("Init",jsonconfig)
+	//fmt.Println("Init",jsonconfig)
 	var m map[string]interface{}
 	err := json.Unmarshal([]byte(jsonconfig), &m)
-	fmt.Println(err)
+	//fmt.Println("console Init",err)
 	if err != nil {
 		return err
 	}
 	if lv, ok := m["level"]; ok {
 		c.level = int(lv.(float64))
 	}
-	fmt.Println(c.level)
+	//fmt.Println("ConsoleWriter",c)
+	//fmt.Println("c.level",c.level)
 	return nil
 }
 
 func (c *ConsoleWriter) WriteMsg(msg string, level int) error {
+    //fmt.Println("--------------write console msg")
+	//fmt.Println("level",level)
+	//fmt.Println("c.level",c.level)
+	//fmt.Println("--------------write console msg")
 	if level < c.level {
 		return nil
 	}
 	c.lg.Println(msg)
+	//fmt.Println("console WriteMsg",msg)
 	return nil
 }
 
