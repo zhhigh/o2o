@@ -27,17 +27,12 @@ var Logger *logs.Logger
 
 func init() {
 	Logger = logs.NewLogger(100)
-	SetLevel(LevelInfo)
-	fmt.Println(Logger)
-	fmt.Println(LogType)
-	fmt.Println(LogFileName)
 	switch LogType{
 		case "file":
      		filePara := `{"filename":"`+LogFileName+`","maxlines":10000}`
 			fmt.Println(filePara)
 			//log.SetLogger("file", `{"filename":"test3.log","maxlines":4}`)
 	    	Logger.SetLogger(LogType, filePara)
-		    Logger.Info("test")
 		default:
 		    Logger.SetLogger("console","")
 	}
