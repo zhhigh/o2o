@@ -3,7 +3,7 @@ package o2o
 import (
 	"strings"
 	"github.com/zhhigh/o2o/logs"
-	"fmt"
+	//"fmt"
 )
 
 // Log levels to control the logging output.
@@ -30,8 +30,7 @@ func init() {
 	switch LogType{
 		case "file":
      		filePara := `{"filename":"`+LogFileName+`","maxlines":10000}`
-			fmt.Println(filePara)
-			//log.SetLogger("file", `{"filename":"test3.log","maxlines":4}`)
+     		//log.SetLogger("file", `{"filename":"test3.log","maxlines":4}`)
 	    	Logger.SetLogger(LogType, filePara)
 		default:
 		    Logger.SetLogger("console","")
