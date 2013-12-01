@@ -44,7 +44,7 @@ func (m *MongoDBConn) Connect(url string) *mgo.Session {
 	session, err := mgo.Dial(url)
 	if err != nil {
 		panic(err)
-		return nil
+		//return nil
 	}
 	m.session = session
 	session.SetMode(mgo.Monotonic, true)
