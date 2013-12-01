@@ -5,6 +5,7 @@ import (
 	"os"
 	"path"
 	"runtime"
+	"fmt"
 )
 
 var (
@@ -26,11 +27,14 @@ var (
 
 )
 
-func CfgInit() {
+func init() {
 	os.Chdir(path.Dir(os.Args[0]))
 	AppPath = path.Dir(os.Args[0])
 	AppConfigPath = path.Join(AppPath, "conf", "app.conf")
-	ParseConfig()
+	err := ParseConfig()
+	if (err != nil){
+       fmt.Println("parse config error:",err)
+	}
 	runtime.GOMAXPROCS(runtime.NumCPU())
 }
 
