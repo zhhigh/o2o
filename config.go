@@ -7,7 +7,6 @@ import (
 	"runtime"
 	"fmt"
 )
-
 var (
 	//AppName       string
 	AppPath       string
