@@ -26,7 +26,7 @@ var (
 
 )
 
-func init() {
+func CfgInit() {
 	os.Chdir(path.Dir(os.Args[0]))
 	AppPath = path.Dir(os.Args[0])
 	AppConfigPath = path.Join(AppPath, "conf", "app.conf")
