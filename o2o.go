@@ -8,6 +8,10 @@ package o2o
   3、weixin package
   4、mongodb
 
+  ver:0.02[2013-12-01]
+  5、pm2.5 support
+   //                 http://aqicn.org/city/shanghai/cn/
+
 */
 
 const VERSION = "0.0.1"
