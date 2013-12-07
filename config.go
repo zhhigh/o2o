@@ -22,6 +22,9 @@ var (
 	WX_Port      string
 	WX_Defaultreply  string
 
+	WX_LoginUser string
+	WX_LoginPWD string
+
 	AppConfig     config.ConfigContainer
 
 )
@@ -78,6 +81,20 @@ func ParseConfig() (err error) {
 		if v := AppConfig.String("wx_defaultreply"); err == nil {
 			WX_Defaultreply = v
 		}
+		if v := AppConfig.String("wx_mploginuser"); err == nil {
+			WX_LoginUser = v
+		}
+		if v := AppConfig.String("wx_mploginpwd"); err == nil {
+			WX_LoginPWD = v
+		}
 	}
 	return nil
+}
+
+
+func PWDEncode(pwd string)(string){
+    alg := NewAlg()
+	alg.SetKeyt(KEYMAIL)
+	result := alg.Ddecode(pwd)
+	return result
 }

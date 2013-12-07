@@ -22,6 +22,8 @@ import (
 
 type WebWeChat struct {
 	token   string
+	WX_LoginUser string
+	WX_LoginPWD  string
 	cookies []*http.Cookie
 }
 
@@ -34,12 +36,15 @@ func NewWebWeChat() *WebWeChat {
 */
 func (w *WebWeChat) LoginMPPage() bool {
 	login_url := "https://mp.weixin.qq.com/cgi-bin/login?lang=zh_CN"
-	email := "qingzhonglele@163.com"
-	password := "hdbmaster@139"
-	h := md5.New()
-	h.Write([]byte(password))
-	password = hex.EncodeToString(h.Sum(nil))
-	fmt.Println(password)
+	email := w.WX_LoginUser
+	password := w.WX_LoginPWD
+
+	/*h := md5.New()
+	h.Write([]byte("hdbmaster@139"))
+	password = hex.EncodeToString(h.Sum(nil))*/
+	//fmt.Println("------------------------password==================")
+	//fmt.Println(password)
+	//fmt.Println("------------------------password==================")
 	post_arg := url.Values{"username": {email}, "pwd": {password}, "imgcode": {""}, "f": {"json"}}
 
 	fmt.Println(strings.NewReader(post_arg.Encode()))
@@ -55,7 +60,7 @@ func (w *WebWeChat) LoginMPPage() bool {
 	data, _ := ioutil.ReadAll(resp.Body)
 
 	s := string(data)
-	fmt.Printf("%s", s)
+	//fmt.Printf("%s", s)
 
 	doc := json.NewDecoder(strings.NewReader(s))
 

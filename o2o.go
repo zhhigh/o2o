@@ -14,4 +14,7 @@ package o2o
    https://github.com/PuerkitoBio/gocrawl
 */
 
-const VERSION = "0.0.1"
+const (
+	VERSION = "0.0.1"
+	KEYMAIL = "zhhigh@163.com"
+)
