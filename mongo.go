@@ -27,7 +27,7 @@ package o2o
 import (
 	"labix.org/v2/mgo"
 	"fmt"
-	"reflect"
+	//"reflect"
 )
 
 type MongoDBConn struct {
@@ -124,7 +124,7 @@ func (m *MongoDBConn) Find(query interface{},result interface{})(interface{}){
 /*insert data*/
 func (m *MongoDBConn) Insert(data interface{}){
 	Collection := m.session.DB(m.dbName).C(m.tableName)
-	err := Collection.Insert(&data)
+	err := Collection.Insert(data)
 	if err != nil {
 		panic(err)
 		fmt.Printf("Log Info======:\n",err)
