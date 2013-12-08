@@ -106,65 +106,6 @@ func (m *MongoDBConn) FindAll(result interface{})(interface{}){
     return result
 }
 
-func (m *MongoDBConn) FindO(query interface{},result interface{})(interface{}){
-	Collection := m.session.DB(m.dbName).C(m.tableName)
-	err := Collection.Find(query).All(result) //这个err无意义，无论有无结果，均返回空值
-	//fmt.Println(err)
-	if err != nil {
-		panic(err)
-		fmt.Printf("Log Info======:\n",err)
-		return nil
-	}
-	fmt.Println("------------result-----------------")
-	if (&result == nil){
-		fmt.Println("result is nil")
-	}else{
-         fmt.Println("result is not nil")
-     }
-
-	var p *[]interface{}
-	p = result.(*[]interface{})
-	fmt.Println(*p)
-	if (*p == nil){
-	   fmt.Println("p is nil")
-	}else{
-		fmt.Println("*p is not nil")
-	}
-	fmt.Println(&result)
-	fmt.Println(result)
-	fmt.Println(result.(interface{}))
-	/*for m,_ := range (result.([]interface{})){
-		fmt.Println(m)
-	}*/
-	fmt.Println(reflect.TypeOf(result))
-	fmt.Println("------------result-----------------")
-	//fmt.Println(reflect.TypeOf(result))
-	//fmt.Println(reflect.ValueOf(result).Kind())
-    a := reflect.ValueOf(result)
-	b := a.Kind()
-
-	switch b{
-	case reflect.Ptr:
-		fmt.Println(a)
-		fmt.Println(reflect.TypeOf(result))
-		e :=reflect.ValueOf(result)
-		fmt.Println(e)
-		/*for m,n := range e.([]interface{}){
-			fmt.Println(m)
-			fmt.Println(n)
-		}*/
-		/*for m,n := range e.([]interface {}){
-			fmt.Println(m)
-			fmt.Println(n)
-		}*/
-	default:
-		fmt.Println("default")
-	}
-
-	fmt.Println("-----------------mongodb lib--------------------")
-	return result
-}
-
 /*find one or more from condition
 */
 func (m *MongoDBConn) Find(query interface{},result interface{})(interface{}){
@@ -182,7 +123,7 @@ func (m *MongoDBConn) Find(query interface{},result interface{})(interface{}){
 /*insert data*/
 func (m *MongoDBConn) Insert(data interface{}){
 	Collection := m.session.DB(m.dbName).C(m.tableName)
-	err := Collection.Insert(data)
+	err := Collection.Insert(&data)
 	if err != nil {
 		panic(err)
 		fmt.Printf("Log Info======:\n",err)
