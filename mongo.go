@@ -79,6 +79,7 @@ func (m *MongoDBConn) FindOne(query interface{},result interface{})(interface{})
 	return result
 } */
 
+
 func (m *MongoDBConn) FindOne(query interface{},result interface{})(interface{}){
 	Collection := m.session.DB(m.dbName).C(m.tableName)
 	err := Collection.Find(query).One(result)
