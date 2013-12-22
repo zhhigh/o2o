@@ -34,9 +34,8 @@ type MongoDBConn struct {
 	session *mgo.Session
 	dbName  string
 	tableName string
+	ResultCount int
 }
-
-var ResultCount int
 
 func NewMongoDBConn() *MongoDBConn {
 	return &MongoDBConn{}
@@ -119,8 +118,8 @@ func (m *MongoDBConn) Find(query interface{},result interface{})(interface{}){
 	Collection.Find(query).All(result)
 
 	////
-	ResultCount = 0
-	ResultCount,_ = Collection.Count()
+	m.ResultCount = 0
+	m.ResultCount,_ = Collection.Count()
 	//
 	var p *[]interface {}//判断result是否有返回
 	p = result.(*[]interface{})
