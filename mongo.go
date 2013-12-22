@@ -36,6 +36,8 @@ type MongoDBConn struct {
 	tableName string
 }
 
+var ResultCount int
+
 func NewMongoDBConn() *MongoDBConn {
 	return &MongoDBConn{}
 }
@@ -99,6 +101,8 @@ func (m *MongoDBConn) FindOne(query interface{},result interface{})(interface{})
 func (m *MongoDBConn) FindAll(result interface{})(interface{}){
 	Collection := m.session.DB(m.dbName).C(m.tableName)
 	err := Collection.Find(nil).All(result)
+
+
 	if err != nil {
 		panic(err)
 		fmt.Printf("Log Info======:\n",err)
@@ -110,9 +114,14 @@ func (m *MongoDBConn) FindAll(result interface{})(interface{}){
 /*find one or more from condition
 */
 func (m *MongoDBConn) Find(query interface{},result interface{})(interface{}){
+
 	Collection := m.session.DB(m.dbName).C(m.tableName)
 	Collection.Find(query).All(result)
 
+	//
+	ResultCount = 0
+	ResultCount,_ = Collection.Count()
+	//
 	var p *[]interface {}//判断result是否有返回
 	p = result.(*[]interface{})
 	if (*p == nil){
