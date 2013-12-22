@@ -118,7 +118,7 @@ func (m *MongoDBConn) Find(query interface{},result interface{})(interface{}){
 	Collection := m.session.DB(m.dbName).C(m.tableName)
 	Collection.Find(query).All(result)
 
-	//
+	////
 	ResultCount = 0
 	ResultCount,_ = Collection.Count()
 	//
