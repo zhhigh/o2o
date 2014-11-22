@@ -10,8 +10,10 @@ package o2o
 
   ver:0.02[2013-12-01]
   5、pm2.5 support
-   //                 http://aqicn.org/city/shanghai/cn/
+   //http://aqicn.org/city/shanghai/cn/
    https://github.com/PuerkitoBio/gocrawl
+
+   date:[2014-11-22]
 */
 
 const (
