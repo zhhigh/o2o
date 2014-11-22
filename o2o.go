@@ -13,7 +13,7 @@ package o2o
    //http://aqicn.org/city/shanghai/cn/
    https://github.com/PuerkitoBio/gocrawl
 
-   date:[2014-11-22]
+   date:[2014-11-22]重新开始
 */
 
 const (

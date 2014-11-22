@@ -1,5 +1,9 @@
 package o2o
 
+/*
+默认使用app.conf名字的配置文件，文件放在当前程序的conf/app.conf下
+*/
+
 import (
 	"github.com/zhhigh/o2o/config"
 	"os"
