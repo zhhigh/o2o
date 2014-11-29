@@ -10,7 +10,7 @@ import (
 )
 
 var (
-    Token = "thisiswechattoken"
+    Token string
 )
 
 type HandlerFunc func(*Request)(*Response, error)
