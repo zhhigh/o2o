@@ -1,7 +1,8 @@
 package o2o
 
 import(
-	"github.com/PuerkitoBio/goquery"
+	//"github.com/PuerkitoBio/goquery"
+	"fmt"
 )
 
 type PM25 struct{
@@ -10,6 +11,7 @@ type PM25 struct{
 
 
 func NewPM25()*PM25{
+	fmt.Println("test")
    return &PM25{}
 }
 
