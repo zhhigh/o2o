@@ -9,9 +9,7 @@ import (
     "github.com/mikespook/golib/log"
 )
 
-var (
-    Token string
-)
+
 type HandlerFunc func(*Request)(*Response, error)
 
 func Handle(w http.ResponseWriter, r *http.Request, h HandlerFunc) {
