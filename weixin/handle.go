@@ -49,6 +49,7 @@ func Handle(w http.ResponseWriter, r *http.Request, h HandlerFunc) {
         if Signature(Token, r.FormValue("timestamp"),
             r.FormValue("nonce")) == r.FormValue("signature") {
             w.Write([]byte(r.FormValue("echostr")))
+
         } else {
             w.WriteHeader(403)
         }
@@ -56,6 +57,7 @@ func Handle(w http.ResponseWriter, r *http.Request, h HandlerFunc) {
 }
 
 func Signature(token, timestamp, nonce string) string {
+    fmt.Println("this is handle.go",token)
     strs := sort.StringSlice{token, timestamp, nonce}
     sort.Strings(strs)
     str := ""
