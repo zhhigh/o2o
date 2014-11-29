@@ -9,6 +9,10 @@ const (
     Location = "location"
     Image = "image"
     News = "news"
+	WeixinHost        = "https://api.weixin.qq.com/cgi-bin"
+	WeixinQRScene     = "https://api.weixin.qq.com/cgi-bin/qrcode"
+	WeixinShowQRScene = "https://mp.weixin.qq.com/cgi-bin/showqrcode"
+	WeixinFileURL     = "http://file.api.weixin.qq.com/cgi-bin/media"
 )
 
 type MsgBase struct {
