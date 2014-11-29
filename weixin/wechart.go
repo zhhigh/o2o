@@ -7,8 +7,8 @@ package weixin
 微信远程包
 */
 import (
-	"crypto/md5"
-	"encoding/hex"
+	//"crypto/md5"
+	//"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"io"
