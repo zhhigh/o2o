@@ -4,6 +4,10 @@ import (
     "time"
 )
 
+var (
+	Token string
+)
+
 const (
     Text = "text"
     Location = "location"
