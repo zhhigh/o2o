@@ -16,12 +16,6 @@ package o2o
    date:[2014-11-22]重新开始
 */
 
-import(
-    _ "o2o/weixin"
-
-)
-
-
 const (
 	VERSION = "0.0.1"
 	KEYMAIL = "zhhigh@163.com"
