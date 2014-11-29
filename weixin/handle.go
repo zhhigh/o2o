@@ -46,8 +46,7 @@ func Handle(w http.ResponseWriter, r *http.Request, h HandlerFunc) {
         if Signature(Token, r.FormValue("timestamp"),
             r.FormValue("nonce")) == r.FormValue("signature") {
             w.Write([]byte(r.FormValue("echostr")))
-
-        } else {
+            } else {
             w.WriteHeader(403)
         }
     }
