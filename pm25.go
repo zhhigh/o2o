@@ -8,6 +8,7 @@ type PM25 struct{
 
 }
 
+
 func NewPM25()*PM25{
    return &PM25{}
 }
