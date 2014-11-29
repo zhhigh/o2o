@@ -22,6 +22,4 @@ const (
 )
 
 
-import(
-   _ "o2o/weixin"
-)
+
