@@ -12,7 +12,6 @@ import (
 var (
     Token string
 )
-
 type HandlerFunc func(*Request)(*Response, error)
 
 func Handle(w http.ResponseWriter, r *http.Request, h HandlerFunc) {
@@ -57,9 +56,8 @@ func Handle(w http.ResponseWriter, r *http.Request, h HandlerFunc) {
 }
 
 func Signature(token, timestamp, nonce string) string {
-
+    //set token
     token = Token
-    fmt.Println("this is handle.go",token)
     strs := sort.StringSlice{token, timestamp, nonce}
     sort.Strings(strs)
     str := ""
@@ -70,3 +68,4 @@ func Signature(token, timestamp, nonce string) string {
     h.Write([]byte(str))
     return fmt.Sprintf("%x", h.Sum(nil))
 }
+
