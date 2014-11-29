@@ -15,12 +15,12 @@ func NewPM25()*PM25{
 func (p *PM25)ReadFromPM25WebPage()string{
  	var doc *goquery.Document
 	var e error
-	if doc, e = goquery.NewDocument(TARGET_URL); e != nil {
+	if doc, e = goquery.NewDocument("TARGET_URL"); e != nil {
 		panic(e.Error())
 	}
 
 	sel2 := doc.Find(`script`).Text()
-	matches := regexp.MustCompile(`var\slocalCityData\s\=\s{.*};`).FindAllString(sel2, -1)
+	//matches := regexp.MustCompile(`var\slocalCityData\s\=\s{.*};`).FindAllString(sel2, -1)
 
 	return matches[0]
 	/*fileName := "pm.json"
