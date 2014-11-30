@@ -1,6 +1,6 @@
 package weixin
 
-/*20141029*/
+/*20141029
 import (
 	"encoding/json"
 	"net/http"
@@ -60,7 +60,7 @@ func postRequest(reqURL string,token string,data []byte)([]byte,error){
 
 	return nil, errors.New("WeiXin post request too many times:" + reqURL)
 
-}
+}*/
 /*
 func postRequest(reqURL string, c chan accessToken, data []byte) ([]byte, error) {
 	for i := 0; i < retryMaxN; i++ {
