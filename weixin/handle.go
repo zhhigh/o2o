@@ -55,6 +55,7 @@ func Handle(w http.ResponseWriter, r *http.Request, h HandlerFunc) {
 func Signature(token, timestamp, nonce string) string {
     //set token
     token = Token
+    fmt.Println("token is :",token)
     strs := sort.StringSlice{token, timestamp, nonce}
     sort.Strings(strs)
     str := ""
